@@ -1,7 +1,16 @@
 import Head from "next/head";
-import clientPromise from "../../lib/mongodb";
+import useSWR from "swr";
+import { useRouter } from "next/router";
 
-export default function Home({ isConnected }: any) {
+export default function Home() {
+  const router = useRouter();
+  const { index } = router.query;
+
+  const url = "/api/poll?id=" + index;
+  const { error, data } = useSWR(url, () =>
+    fetch(url).then((res) => res.json())
+  );
+
   return (
     <div className="container">
       <Head>
@@ -9,18 +18,8 @@ export default function Home({ isConnected }: any) {
       </Head>
 
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js with MongoDB!</a>
-        </h1>
-
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{" "}
-            for instructions.
-          </h2>
-        )}
+        {error && "An error occured, please try again"}
+        {data ? JSON.stringify(data) : "Loading..."}
       </main>
     </div>
   );
