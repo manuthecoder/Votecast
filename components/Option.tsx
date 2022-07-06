@@ -16,7 +16,7 @@ export function Option({
 }) {
   return (
     <Card
-      onClick={() => setVoted(true)}
+      onClick={() => setVoted(option.name)}
       sx={{
         mb: 2,
         borderRadius: 5,

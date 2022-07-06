@@ -1,12 +1,13 @@
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import Toolbar from "@mui/material/Toolbar";
 import Card from "@mui/material/Card";
 import AppBar from "@mui/material/AppBar";
 import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
 import { Option } from "./Option";
 import React from "react";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 
 function PollCard({ data }) {
   const [voted, setVoted] = React.useState<boolean>(false);
@@ -90,13 +91,54 @@ function PollCard({ data }) {
                   left: 0,
                   borderBottom: "1px solid #ddd",
                   background: "#eee",
+                  display: "flex",
+                  justifyContent: "center",
+                  px: 2,
+                  height: "50px!important",
                 }}
                 elevation={0}
               >
-                <Toolbar>
-                  <Typography>Chat</Typography>
-                </Toolbar>
+                <Typography>Chat</Typography>
               </AppBar>
+              <Box></Box>
+              <Box
+                sx={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  width: "100%",
+                }}
+              >
+                <TextField
+                  fullWidth
+                  placeholder="Type message here"
+                  InputProps={{
+                    sx: {
+                      borderRadius: "0 0 19px 19px",
+                    },
+                    endAdornment: (
+                      <InputAdornment
+                        position="end"
+                        sx={{
+                          mr: 1,
+                          "& span": {
+                            transition:
+                              "all .2s cubic-bezier(.17,.67,.44,1.31)",
+                          },
+                          "&:hover span": { transform: "rotate(-90deg)" },
+                        }}
+                      >
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          edge="end"
+                        >
+                          <span className="material-symbols-rounded">east</span>
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Box>
             </Card>
           </Grid>
         )}
@@ -120,9 +162,9 @@ export function Poll({ data }: any) {
         justifyContent: "center",
       }}
     >
-      <Container sx={{ mt: 4 }}>
+      <Box sx={{ mt: 4, px: 3 }}>
         {isLoading ? "Loading..." : <PollCard data={data} />}
-      </Container>
+      </Box>
     </Box>
   );
 }
