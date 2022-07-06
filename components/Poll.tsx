@@ -83,6 +83,10 @@ function PollCard({ data }) {
                     id={id}
                     setVoted={setVoted}
                     voted={voted}
+                    totalVotes={data.options.reduce(
+                      (n, { votes }) => n + parseInt(votes),
+                      0
+                    )}
                   />
                 ))}
             </Box>
