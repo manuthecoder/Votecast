@@ -1,5 +1,6 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import Badge from "@mui/material/Badge";
 import CardActionArea from "@mui/material/CardActionArea";
 import Typography from "@mui/material/Typography";
 
@@ -18,6 +19,9 @@ export function Option({
     <Card
       onClick={() => setVoted(option.name)}
       sx={{
+        ...(voted && {
+          pointerEvents: "none",
+        }),
         mb: 2,
         borderRadius: 5,
         boxShadow: 0,
@@ -25,8 +29,17 @@ export function Option({
       }}
     >
       <CardActionArea>
-        <CardContent>
+        <CardContent sx={{ display: "flex", alignItems: "center" }}>
           <Typography>{option.name}</Typography>
+          {voted === option.name && (
+            <Badge
+              sx={{ ml: "auto", mr: 2 }}
+              badgeContent={
+                <span className="material-symbols-rounded">check</span>
+              }
+              color="secondary"
+            ></Badge>
+          )}
         </CardContent>
       </CardActionArea>
     </Card>

@@ -21,6 +21,7 @@ function PollCard({ data }) {
               mt: 2,
               overflow: "auto",
               p: 3,
+              position: "relative",
               borderRadius: 5,
             }}
             variant="outlined"
@@ -50,12 +51,29 @@ function PollCard({ data }) {
               borderRadius: 5,
               maxHeight: "calc(100vh - 200px)",
               mt: 2,
+              position: "relative",
               height: "100%",
               overflow: "auto",
               p: 3,
             }}
             variant="outlined"
           >
+            <AppBar
+              position="absolute"
+              sx={{
+                top: 0,
+                left: 0,
+                borderBottom: "1px solid #ddd",
+                background: "#efefef",
+                display: "flex",
+                justifyContent: "center",
+                px: 2,
+                height: "50px!important",
+              }}
+              elevation={0}
+            >
+              <Typography>{voted ? "Results" : "Vote"}</Typography>
+            </AppBar>
             <Box sx={{ width: "100%" }}>
               {data.options &&
                 [...data.options].map((option, id) => (
@@ -90,7 +108,7 @@ function PollCard({ data }) {
                   top: 0,
                   left: 0,
                   borderBottom: "1px solid #ddd",
-                  background: "#eee",
+                  background: "#efefef",
                   display: "flex",
                   justifyContent: "center",
                   px: 2,
@@ -126,6 +144,7 @@ function PollCard({ data }) {
                               "all .2s cubic-bezier(.17,.67,.44,1.31)",
                           },
                           "&:hover span": { transform: "rotate(-90deg)" },
+                          "&:active span": { transform: "rotate(-90deg)" },
                         }}
                       >
                         <IconButton

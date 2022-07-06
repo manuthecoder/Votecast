@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { green, purple } from "@mui/material/colors";
+import { blue, purple } from "@mui/material/colors";
 import Head from "next/head";
 import "../styles/font.css";
 
@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
         main: purple[100],
       },
       secondary: {
-        main: green[100],
+        main: blue[900],
       },
     },
   });
