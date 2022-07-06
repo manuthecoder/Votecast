@@ -1,6 +1,10 @@
 import Head from "next/head";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import { Poll } from "../../components/Poll";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
 export default function Home() {
   const router = useRouter();
@@ -16,11 +20,13 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
       </Head>
-
-      <main>
-        {error && "An error occured, please try again"}
-        {data ? JSON.stringify(data) : "Loading..."}
-      </main>
+      <AppBar elevation={0}>
+        <Toolbar>
+          <Typography>Votecast</Typography>
+        </Toolbar>
+      </AppBar>
+      <Toolbar />
+      <Poll data={data} />
     </div>
   );
 }
