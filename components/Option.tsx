@@ -31,6 +31,7 @@ export function Option({
         boxShadow: 0,
         position: "relative",
         height: "55px",
+        "& *": { transition: "none!important" },
         background: "rgba(200,200,200,.2)",
       }}
     >

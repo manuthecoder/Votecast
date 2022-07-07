@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import { Option } from "./Option";
 import React from "react";
 import InputAdornment from "@mui/material/InputAdornment";
+import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
 
 function PollCard({ data }) {
@@ -55,25 +56,10 @@ function PollCard({ data }) {
               height: "100%",
               overflow: "auto",
               p: 3,
+              border: 0,
             }}
             variant="outlined"
           >
-            <AppBar
-              position="absolute"
-              sx={{
-                top: 0,
-                left: 0,
-                borderBottom: "1px solid #ddd",
-                background: "#efefef",
-                display: "flex",
-                justifyContent: "center",
-                px: 2,
-                height: "50px!important",
-              }}
-              elevation={0}
-            >
-              <Typography>{voted ? "Results" : "Vote"}</Typography>
-            </AppBar>
             <Box sx={{ width: "100%" }}>
               {data.options &&
                 [...data.options].map((option, id) => (
@@ -186,7 +172,7 @@ export function Poll({ data }: any) {
       }}
     >
       <Box sx={{ mt: 4, px: 3 }}>
-        {isLoading ? "Loading..." : <PollCard data={data} />}
+        {isLoading ? <CircularProgress /> : <PollCard data={data} />}
       </Box>
     </Box>
   );

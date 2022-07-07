@@ -30,3 +30,10 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.MuiTouchRipple-rippleVisible {
+  animation-duration: 0.25s !important;
+}
+.MuiTouchRipple-child {
+  filter: opacity(0.2) !important;
+}
